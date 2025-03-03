@@ -20,11 +20,13 @@ body {
     background: radial-gradient(circle at top right, #0a2333, var(--background));
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     color: var(--text);
     position: relative;
     overflow-x: hidden;
+    padding: 20px;
+    gap: 20px;
 }
 
 body::before {
@@ -41,6 +43,41 @@ body::before {
     pointer-events: none;
 }
 
+/* Ad Container Styles */
+.ad-container {
+    background: rgba(5, 22, 34, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 225, 255, 0.1);
+    z-index: 10;
+}
+
+.ad-placeholder {
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ad-top, .ad-bottom {
+    width: 90%;
+    max-width: 900px;
+    height: 100px;
+}
+
+.ad-side {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px;
+    height: 600px;
+    display: none;
+}
+
 .container {
     background: rgba(5, 22, 34, 0.8);
     padding: 3rem;
@@ -54,20 +91,37 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
+    margin: 20px 0;
 }
 
-.container::before {
+.container::before,
+.container::after {
     content: '';
     position: absolute;
     top: -2px;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: var(--gradient);
-    z-index: -1;
     border-radius: 26px;
+    z-index: -1;
+}
+
+.container::before {
+    background: var(--gradient);
     opacity: 0.3;
     filter: blur(10px);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.container::after {
+    background: linear-gradient(45deg, 
+        rgba(0, 225, 255, 0.1),
+        transparent,
+        rgba(0, 225, 255, 0.1)
+    );
+    opacity: 0.5;
+    filter: blur(15px);
+    animation: shine 6s ease-in-out infinite;
 }
 
 h1 {
@@ -293,7 +347,25 @@ h1::after {
     }
 }
 
-/* Add these styles at the end of the file, before the @media query */
+@keyframes glow {
+    0% {
+        opacity: 0.3;
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 0.4;
+        filter: blur(15px);
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
 
 .achievement-alert {
     position: fixed;
@@ -324,6 +396,7 @@ h1::after {
     font-size: 2rem;
     color: #FFD700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: trophy-spin 1s ease-in-out infinite;
 }
 
 .achievement-content {
@@ -334,6 +407,7 @@ h1::after {
     margin: 0;
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
+    text-shadow: 0 0 10px rgba(0, 225, 255, 0.3);
 }
 
 .achievement-content p {
@@ -348,8 +422,24 @@ h1::after {
     100% { transform: rotate(-15deg); }
 }
 
-.achievement-alert i {
-    animation: trophy-spin 1s ease-in-out infinite;
+@media (min-width: 1200px) {
+    .ad-side {
+        display: block;
+    }
+
+    .container {
+        margin-right: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ad-top, .ad-bottom {
+        height: 80px;
+    }
+
+    .container {
+        padding: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
