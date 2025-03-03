@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Distance Tracker</h1>
+        
+        <div class="tracking-status">
+            <div class="status-indicator" id="statusIndicator">
+                <i class="fas fa-satellite-dish"></i>
+                <span id="statusText">Ready to track</span>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <h2>Kilometers</h2>
+                <div class="value" id="kilometers">0.00</div>
+            </div>
+            <div class="metric-card">
+                <h2>Meters</h2>
+                <div class="value" id="meters">0.00</div>
+            </div>
+            <div class="metric-card">
+                <h2>Steps</h2>
+                <div class="value" id="steps">0</div>
+            </div>
+        </div>
+
+        <button id="trackButton" class="track-button">
+            <i class="fas fa-play"></i> Start Tracking
+        </button>
+
+        <div class="last-session">
+            <h3>Last Session</h3>
+            <p id="lastSessionData">No previous session</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
