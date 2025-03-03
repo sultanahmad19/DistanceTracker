@@ -6,146 +6,275 @@
 
 :root {
     --primary: #00e1ff;
+    --primary-dark: #0088ff;
     --background: #051622;
     --card-bg: rgba(255, 255, 255, 0.05);
     --text: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
+    --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    --glow: 0 0 20px rgba(0, 225, 255, 0.2);
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--background);
+    background: radial-gradient(circle at top right, #0a2333, var(--background));
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 50px,
+        rgba(0, 225, 255, 0.05) 50px,
+        rgba(0, 225, 255, 0.05) 51px
+    );
+    pointer-events: none;
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 225, 255, 0.1);
+    background: rgba(5, 22, 34, 0.8);
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 
+        0 0 40px rgba(0, 225, 255, 0.1),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
     width: 90%;
-    max-width: 800px;
-    backdrop-filter: blur(10px);
+    max-width: 900px;
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient);
+    z-index: -1;
+    border-radius: 26px;
+    opacity: 0.3;
+    filter: blur(10px);
 }
 
 h1 {
     text-align: center;
     color: var(--text);
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 3rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow: 0 0 15px rgba(0, 225, 255, 0.3);
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--gradient);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    box-shadow: var(--glow);
 }
 
 .tracking-status {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .status-indicator {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--card-bg);
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+
+.status-indicator:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .status-indicator i {
     color: var(--text-secondary);
+    font-size: 1.2rem;
 }
 
 .status-indicator.active i {
     color: var(--primary);
     animation: pulse 2s infinite;
+    text-shadow: 0 0 10px var(--primary);
 }
 
 .metrics {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 .metric-card {
-    background-color: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 15px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    padding: 2rem;
+    border-radius: 20px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.metric-card:hover::before {
+    left: 100%;
 }
 
 .metric-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 225, 255, 0.2);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
     border-color: var(--primary);
 }
 
 .metric-card h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .value {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
-    color: var(--primary);
-    text-shadow: 0 0 10px rgba(0, 225, 255, 0.3);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--glow);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover .value {
+    transform: scale(1.1);
 }
 
 .track-button {
     display: block;
     width: 100%;
-    padding: 1.2rem;
+    padding: 1.5rem;
     border: none;
-    border-radius: 15px;
-    background: linear-gradient(135deg, var(--primary), #0088ff);
+    border-radius: 20px;
+    background: var(--gradient);
     color: var(--text);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(0, 225, 255, 0.3);
+    letter-spacing: 2px;
+    box-shadow: 
+        0 4px 15px rgba(0, 225, 255, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.track-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.track-button:hover::before {
+    left: 100%;
 }
 
 .track-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 225, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(0, 225, 255, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
 .track-button.tracking {
     background: linear-gradient(135deg, #ff4444, #ff0000);
+    box-shadow: 
+        0 4px 15px rgba(255, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .last-session {
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     text-align: center;
     color: var(--text-secondary);
-    padding: 1.5rem;
-    background-color: var(--card-bg);
-    border-radius: 15px;
+    padding: 2rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
 }
 
 .last-session h3 {
     margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     color: var(--text);
+    font-size: 1.2rem;
 }
 
 @keyframes pulse {
@@ -156,6 +285,7 @@ h1 {
     50% {
         opacity: 0.5;
         transform: scale(1.1);
+        text-shadow: 0 0 20px var(--primary);
     }
     100% {
         opacity: 1;
@@ -165,14 +295,19 @@ h1 {
 
 @media (max-width: 480px) {
     .container {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .value {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .track-button {
+        padding: 1.2rem;
+        font-size: 1.1rem;
     }
 }
