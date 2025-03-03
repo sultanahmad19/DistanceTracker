@@ -565,25 +565,177 @@ h1::after {
 
     .container {
         padding: 2rem;
+        width: 95%;
+    }
+
+    .metrics {
+        gap: 1.5rem;
+    }
+
+    .metric-card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .status-indicator {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
-        padding: 2rem;
+        padding: 1.5rem;
+        width: 98%;
     }
 
     .value {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        margin-bottom: 2rem;
     }
 
     .track-button {
         padding: 1.2rem;
         font-size: 1.1rem;
+    }
+
+    .metrics {
+        gap: 1rem;
+    }
+
+    .metric-card {
+        padding: 1.2rem;
+    }
+
+    .metric-card h2 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .status-indicator {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .achievement-alert {
+        max-width: 300px;
+        padding: 1rem;
+    }
+
+    .achievement-alert.show {
+        transform: translateX(-320px);
+    }
+
+    .achievement-content h4 {
+        font-size: 1.1rem;
+    }
+
+    .achievement-content p {
+        font-size: 0.8rem;
+    }
+
+    .last-session {
+        padding: 1.5rem;
+    }
+
+    .last-session h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .value {
+        font-size: 2rem;
+    }
+
+    .track-button {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .achievement-alert {
+        max-width: 250px;
+        padding: 0.8rem;
+    }
+
+    .achievement-alert.show {
+        transform: translateX(-270px);
+    }
+}
+
+/* For tablets in portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        width: 95%;
+        padding: 2.5rem;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For landscape mode on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .metric-card {
+        padding: 1rem;
+    }
+
+    .value {
+        font-size: 2rem;
+    }
+}
+
+/* High-resolution screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .value {
+        font-size: 3.5rem;
+    }
+
+    .metric-card {
+        padding: 2.5rem;
     }
 }
 
