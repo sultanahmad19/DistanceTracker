@@ -293,6 +293,65 @@ h1::after {
     }
 }
 
+/* Add these styles at the end of the file, before the @media query */
+
+.achievement-alert {
+    position: fixed;
+    top: 20px;
+    right: -400px;
+    background: var(--gradient);
+    color: var(--text);
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 
+        0 4px 20px rgba(0, 225, 255, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 350px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.achievement-alert.show {
+    transform: translateX(-420px);
+}
+
+.achievement-alert i {
+    font-size: 2rem;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.achievement-content {
+    flex: 1;
+}
+
+.achievement-content h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.achievement-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@keyframes trophy-spin {
+    0% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    100% { transform: rotate(-15deg); }
+}
+
+.achievement-alert i {
+    animation: trophy-spin 1s ease-in-out infinite;
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 2rem;
